@@ -1,4 +1,4 @@
-import type { PropertyFilters } from "../../property-query-parser/scripts/parser.ts";
+import type { PropertyFilters } from "../../property_search/scripts/parser.ts";
 import { query } from "./db.ts";
 
 export type {PropertyFilters};
@@ -10,6 +10,8 @@ export const DEFAULT_MONTHS = 12;
 export const MAX_MONTHS = 60;
 
 const VALID_TYPES = new Set(["Condominium", "Townhouse", "SingleFamilyResidence", "UnimprovedLand"]);
+const YES = 1;
+const NO = 0;
 
 export type ListingRow = {
     L_ListingID: string;
@@ -117,7 +119,17 @@ const ACTIVE_COLUMNS = `
   YearBuilt, AssociationFee, DaysOnMarket,
   PoolPrivateYN, ViewYN, FireplaceYN, PhotoCount,
   LA1_UserFirstName, LA1_UserLastName, LO1_OrganizationName`;
- 
+
+function yesNoClause(clauses: string[], params: Param[], column: string, value: "True" | "False") {
+  if (value === "True") {
+    clauses.push(`${column} = ?`);
+    params.push(YES);
+  } else {
+    clauses.push(`(${column} IS NULL OR ${column} = ?)`);
+    params.push(NO);
+  }
+}
+
 function activeWhere(f: PropertyFilters): { where: string; params: Param[] } {
   const clauses = ["L_Status = ?"];
   const params: Param[] = ["Active"];
@@ -128,8 +140,8 @@ function activeWhere(f: PropertyFilters): { where: string; params: Param[] } {
   if (f.baths != null) { clauses.push("LM_Dec_3 >= ?"); params.push(f.baths); }
   if (f.sqft != null) { clauses.push("LM_Int2_3 >= ?"); params.push(f.sqft); }
   if (f.type != null) { clauses.push("L_Type_ = ?"); params.push(f.type); }
-  if (f.pool != null) { clauses.push("PoolPrivateYN = ?"); params.push(f.pool); }
-  if (f.hasView != null) { clauses.push("ViewYN = ?"); params.push(f.hasView); }
+  if (f.pool != null) yesNoClause(clauses, params, "PoolPrivateYN", f.pool);
+  if (f.hasView != null) yesNoClause(clauses, params, "ViewYN", f.hasView);
   if (f.maxHOA != null) {
     clauses.push("(AssociationFee IS NULL OR AssociationFee <= ?)");
     params.push(f.maxHOA);

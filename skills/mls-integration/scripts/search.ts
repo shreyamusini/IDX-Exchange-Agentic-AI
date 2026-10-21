@@ -1,5 +1,5 @@
 import { parseArgs } from "node:util";
-import { parsePropertyQuery } from "../../property-query-parser/scripts/parser.ts";
+import { parsePropertyQuery } from "../../property_search/scripts/parser.ts";
 import { closePool } from "./db.ts";
 import {
   getSoldComps,
