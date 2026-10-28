@@ -1,0 +1,8 @@
+{
+  "name": "market-analytics",
+  "private": true,
+  "type": "module",
+  "devDependencies": {
+    "@types/node": "^22.0.0"
+  }
+}

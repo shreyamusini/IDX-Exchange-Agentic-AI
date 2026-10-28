@@ -1,6 +1,6 @@
 ---
 name: mls-integration
-description: Search MLS data and reply with formatted property cards. Holds a multi-turn WhatsApp conversation that asks follow-up questions (city, budget, property type), remembers each person's answers, and returns active listings from rets_property with address, price, beds/baths, and photo count. Also finds recent sold comps in california_sold. Use for any request to find, list, or compare properties or recent sales, including short follow-up answers like "Under $1.2M", "condo", "more", or "start over".
+description: Search MLS data and reply with formatted property cards. Holds a multi-turn WhatsApp conversation that asks follow-up questions (city, budget, property type), remembers each person's answers, and returns active listings from rets_property with address, price, beds/baths, and photo count. Also finds recent sold comps in california_sold. Use for any request to find or list homes for sale or individual recent sales, including short follow-up answers like "Under $1.2M", "condo", "more", or "start over". Not for market statistics such as median prices, price per square foot, trends, or "is it a good time to buy"; use market-analytics for those.
 metadata: { "openclaw": { "requires": { "bins": ["node"] } } }
 ---
 
@@ -19,6 +19,7 @@ It has two commands:
 
 - The user asks about homes **for sale**, or replies to a question `chat.ts` asked → **always `chat.ts`**. This includes the first message, even one that looks complete like "Find homes in Irvine" or "3 bed condos in Tustin under 900k". `chat.ts` searches right away when it has enough, and asks follow-up questions when it doesn't.
 - The user asks what homes **sold** for, recent sales, or comps → `search.ts --source sold`.
+- The user asks about the **market** (median or average prices, price per sq ft, trends, "is it a good time to buy?") → not this skill; use `market-analytics`.
 - Prefer `chat.ts` for homes for sale. If `search.ts` receives a home-for-sale request, it passes it to the same conversation, so the user still gets follow-up questions. Never call the `property-query-parser` skill directly. Both commands already use the parser.
 
 **How `chat.ts` works:** each message goes through the same steps. It loads what the person said before, reads the new message with the parser, asks for anything still missing (city, then budget, then property type), and runs the MLS search once it has enough. You don't need to call `property-query-parser` first.
