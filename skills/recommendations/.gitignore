@@ -1,0 +1,6 @@
+.env
+node_modules/
+venv/
+embeddings/
+__pycache__/
+listings.json

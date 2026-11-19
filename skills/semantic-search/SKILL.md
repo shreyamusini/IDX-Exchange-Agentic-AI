@@ -1,6 +1,6 @@
 ---
 name: semantic-search
-description: Find active homes for sale that match a free-text description by meaning, not keywords or filters. Use when the user describes the style, feel, setting, or character they want, for example "charming craftsman with mountain views and character", "bright modern home with an open kitchen", "cozy cottage that feels like the beach", or "Spanish-style home with a courtyard". Returns the 5 most similar active listings from rets_property as property cards. Not for searches made of filters like city, budget, or bedrooms (use mls-integration), and not for market statistics (use market-analytics).
+description: Find active homes for sale that match a free-text description by meaning, not keywords or filters. Use when the user describes the style, feel, setting, or character they want, for example "charming craftsman with mountain views and character", "bright modern home with an open kitchen", "cozy cottage that feels like the beach", or "Spanish-style home with a courtyard". Returns the 5 most similar active listings from rets_property as property cards. Not for searches made of filters like city, budget, or bedrooms (use mls-integration), not for homes like a specific listing given by MLS number or address (use recommendations), and not for market statistics (use market-analytics).
 metadata: { "openclaw": { "requires": { "bins": ["node"] } } }
 ---
 
@@ -24,6 +24,7 @@ The user describes **what kind of home** they want, in their own words:
 - Requests made of filters, or any message in a home search conversation: "3 bed condos in Irvine under $1M", "Under $1.2M", "condo", "more", "start over" → `mls-integration` (`chat.ts`).
 - Sold homes or comps → `mls-integration` (`search.ts --source sold`).
 - Market questions such as prices, trends, or "is it a good time to buy?" → `market-analytics`.
+- Homes like one specific listing, given by MLS number or address ("more like 350 S Fairway Dr", "more like #2") → `recommendations`.
 
 If a request mixes a description with filters ("craftsman with character in Pasadena under $1.5M"), use this skill when the description is the main point. This skill ranks by meaning only. It doesn't filter by city, price, or bedrooms, so say so in one short line after the results and offer to search with those filters using `mls-integration`.
 

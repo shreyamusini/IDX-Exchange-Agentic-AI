@@ -3,3 +3,4 @@ venv
 node_modules/
 skills/mls-integration/.env
 skills/mls-integration/sessions
+.DS_Store
