@@ -1,0 +1,31 @@
+City market summary calculated from the california_sold table (residential sales, last 12 months).
+This summary's own columns: City; sold_count = number of homes sold; 
+avg_close_price = average sale price in dollars; avg_price_per_sqft = average sale price per square foot; 
+avg_dom = average days on market; list_to_close_pct = average sale price as a percent of list price.
+
+City	sold_count	avg_close_price	avg_price_per_sqft	avg_dom	list_to_close_pct
+San Diego	4620	1173090	725	27.6	99.5
+Los Angeles	4246	1653900	800	42.1	100
+San Jose	1611	1496655	890	25.4	102
+Riverside	1241	736725	392	36.4	100.1
+Oakland	1239	1033868	628	30.3	114.3
+Long Beach	1211	983187	684	37.0	99.9
+Irvine	1102	1743563	811	39.7	98
+Oceanside	928	932949	591	29.9	99.6
+Menifee	907	568944	298	38.3	99.7
+Palm Desert	884	741199	343	74.9	96.4
+Murrieta	873	726580	319	40.1	99.5
+Palm Springs	831	886961	466	68.1	96.6
+Chula Vista	817	897570	488	26.2	100.2
+Corona	794	806657	400	43.8	99.4
+Huntington Beach	782	1531750	828	31.4	99.2
+Hemet	760	415036	253	49.2	99.7
+Temecula	753	883272	381	35.9	99.4
+Escondido	743	934552	480	32.7	99.6
+Lancaster	732	485539	272	42.9	99.9
+Victorville	724	441205	243	45.3	100.5
+Carlsbad	709	1623240	749	31.1	99.1
+San Bernardino	667	513356	370	37.4	100.4
+Moreno Valley	654	555742	326	33.0	100.6
+Walnut Creek	648	1107722	617	28.3	100.6
+Fontana	625	664930	374	35.6	100.3

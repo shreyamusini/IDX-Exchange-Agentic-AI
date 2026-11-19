@@ -1,6 +1,6 @@
 ---
 name: market-analytics
-description: Answer California housing market questions with numbers from california_sold, the sold homes table. Gives median and average sale price, price per square foot, days on market, list-to-close ratio, sales volume, year-over-year changes, a 12-month trend, active inventory, and a buyer's or seller's market read for a city or ZIP code. Use for questions like "Is now a good time to buy in San Diego?", "What's the average price per sq ft in Pasadena?", "How is the Irvine condo market?", "Irvine vs Tustin", or "What are the busiest markets?". Does not list individual homes; for homes for sale or individual sold comps use mls-integration.
+description: Answer California housing market questions with numbers from california_sold, the sold homes table. Gives median and average sale price, price per square foot, days on market, list-to-close ratio, sales volume, year-over-year changes, a 12-month trend, active inventory, and a buyer's or seller's market read for a city or ZIP code. Use for questions like "Is now a good time to buy in San Diego?", "What's the average price per sq ft in Pasadena?", "How is the Irvine condo market?", "Irvine vs Tustin", or "What are the busiest markets?". Does not list individual homes; for homes for sale or individual sold comps use mls-integration. Not for what a term means, like "What is a list-to-close ratio?" or "What does DOM mean?" (use rag-assistant).
 metadata: { "openclaw": { "requires": { "bins": ["node"] } } }
 ---
 
