@@ -433,25 +433,3 @@ No test calls OpenAI: fake clients stand in for the API, so the tests cost nothi
 | 6 | Semantic property search with OpenAI embeddings and cosine similarity | ✅ |
 | 7 | Hybrid recommendation engine with comp-validated price assessments | ✅ |
 | 8 | Document-aware RAG assistant for real estate terms and MLS fields | ✅ |
-
----
-
-## Troubleshooting
-
-| Problem | Fix |
-|---|---|
-| A skill doesn't appear in `skills check` | `SKILL.md` must start with the `---` header containing `name:` and `description:` (spelled exactly) |
-| Part of a `SKILL.md` description is ignored or grayed out | In the header, a space followed by `#` starts a YAML comment. Reword it (for example "the second one" instead of "#2") |
-| `Cannot find module .../property_search/scripts/parser.ts` | Keep all skill folders side by side in the same `skills` folder |
-| The agent answers from memory instead of running a skill | Send `/new`, or say "start over" |
-| The wrong skill answers | Check the skill is in `skills check`, then send `/new` so the agent rereads the descriptions |
-| `Couldn't connect to MySQL` | `brew services start mysql`, then check `mls-integration/.env` |
-| `ModuleNotFoundError` in a Python script | You ran plain `python3` (for example conda's). Use the skill's own `venv/bin/python3` |
-| `venv/bin/python3: no such file` | Create the venv in that skill folder: `python3 -m venv venv && venv/bin/pip install -r requirements.txt`. Don't copy a venv from another folder |
-| "Run build.py first" or "Run build_index.py first" | The embeddings or document index haven't been built in that copy of the skill yet |
-| Chat model error about `temperature` | Some models only accept the default temperature; don't pass one |
-| `Ignoring wrong pointing object` when building the RAG index | A harmless `pypdf` warning about a slightly malformed PDF; the text is still read |
-| Gateway restart fails with "Cannot verify a live serving Gateway owner" | The gateway is stopped. Use `pnpm openclaw gateway start` |
-| `Repository dependencies are missing` from OpenClaw | Run `pnpm install --frozen-lockfile` and `pnpm build` in `~/openclaw` |
-| `Market stats need MySQL 8 or newer` | Window functions are needed for medians. Check with `SELECT VERSION();` |
-| No results for pool or view searches | Check the stored values with `SELECT DISTINCT PoolPrivateYN FROM rets_property;` and update `YES` in `queries.ts` if needed |
